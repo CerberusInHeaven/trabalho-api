@@ -1,0 +1,25 @@
+{
+  "nome": "nathan",
+  "fone": "1112222",
+  "idade": 20,
+  "email": "nathanbandeirap@gmail.com"
+  
+}
+
+
+{
+  "nome": "toguro ",
+  "especialidade": "tomar bomba",
+  "dataNasc": "1999-05-15"
+}
+
+
+{
+  "alunoID": 1,
+  "ProfissionalID": 1,
+  "descricao": "Treino de socao"
+}
+
+
+
+#Deletar treino : http://localhost:3000/treino/4
