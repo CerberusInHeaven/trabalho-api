@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(50)
+  fone      String   @db.VarChar(20)
+  objetivo  String?  @db.VarChar(300)
+  idade     Int      @db.SmallInt
+  email     String   @db.VarChar(255) // Certifique-se de incluir este campo
+  Treinos   Treino[]
+  NumTreinos Int    @default(0)
+  @@map("aluno")
+}
+
+
+
+model Profissional {
+  idprof Int @id @default(autoincrement())
+  nome String @db.VarChar(50)
+  especialidade String @db.VarChar(50)
+  dataNasc String @db.VarChar(20)
+  Licoes Int @default(0)
+  nLicoes Treino[]
+  @@map("Personal")
+}
+
+model Treino {
+  id Int @id @default(autoincrement())
+  aluno Aluno @relation(fields: [alunoID], references: [id])
+  alunoID Int
+  profissional Profissional @relation(fields: [ProfissionalID], references: [idprof])
+  ProfissionalID Int
+  descricao String? @db.VarChar(300)
+  data DateTime @default(now())
+  @@map("treinos")
+}
